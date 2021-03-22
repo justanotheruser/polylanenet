@@ -9,10 +9,10 @@ from utils.lane import LaneEval
 from utils.metric import eval_json
 
 SPLIT_FILES = {
-    'train+val': ['label_data_0313.json', 'label_data_0601.json', 'label_data_0531.json'],
+    #'train+val': ['label_data_0313.json', 'label_data_0601.json', 'label_data_0531.json'],
     'train': ['label_data_0313.json', 'label_data_0601.json'],
     'val': ['label_data_0531.json'],
-    'test': ['test_label.json'],
+    'test': ['test_tasks_0627.json'],
 }
 
 
@@ -112,7 +112,7 @@ class TuSimple(object):
             output_file.write('\n'.join(lines))
 
     def eval(self, exp_dir, predictions, runtimes, label=None, only_metrics=False):
-        pred_filename = '/tmp/tusimple_predictions_{}.json'.format(label)
+        pred_filename = 'tmp/tusimple_predictions_{}.json'.format(label)
         self.save_tusimple_predictions(predictions, runtimes, pred_filename)
         if self.metric == 'default':
             result = json.loads(LaneEval.bench_one_submit(pred_filename, self.anno_files[0]))

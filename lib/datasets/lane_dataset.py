@@ -120,6 +120,7 @@ class LaneDataset(Dataset):
             xs = xs[xs >= 0]
 
             # draw GT points
+            img = cv2.UMat(img)
             for p in zip(xs, ys):
                 p = (int(p[0] * img_w), int(p[1] * img_h))
                 img = cv2.circle(img, p, 5, color=GT_COLOR, thickness=-1)
@@ -130,6 +131,7 @@ class LaneDataset(Dataset):
                         fontFace=cv2.FONT_HERSHEY_COMPLEX,
                         fontScale=1,
                         color=(0, 255, 0))
+            img = img.get()
 
         if pred is None:
             return img

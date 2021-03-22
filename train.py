@@ -44,6 +44,7 @@ def train(model, train_loader, exp_dir, cfg, val_loader, train_state=None):
         logging.info("Beginning epoch {}".format(epoch))
         accum_loss = 0
         for i, (images, labels, img_idxs) in enumerate(train_loader):
+            print(images, labels, img_idxs)
             total_iter += 1
             iter_t0 = time()
             images = images.to(device)
