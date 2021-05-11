@@ -13,7 +13,7 @@ ITER_PATTERN = re.compile(
 )
 LOSS_COMP_PATTERN = re.compile('(\w+):\ (\d*\.?\d*)')  # noqa: w605
 EPOCH_PATTERN = re.compile('^\[([^\]]*)\]\ .*Epoch \[(\d*)/(\d*).*Val\ loss: (\d*\.?\d*)$')  # noqa: w605
-EXPS_DIR = '../data_lane-regression/experiments'
+EXPS_DIR = r'..\experiments'
 
 # TODO: refactor this file
 
@@ -149,7 +149,7 @@ if __name__ == "__main__":
     for exp_name in args.exp_name:
         log_filepath = get_logfilepath(exp_name)
         data = parse_log(log_filepath)
-        plot_loss(data, fig, ax, exp_name, smoothing=args.smoothing, xaxis=args.xaxis)
+        plot_loss(data, fig, ax, exp_name, smoothing=args.smoothing, xaxis=args.xaxis, plot_val=True)
 
     # Show the major grid lines with dark grey lines
     plt.grid(b=True, which='major', color='#666666', linestyle='-')

@@ -10,8 +10,8 @@ from utils.metric import eval_json
 
 SPLIT_FILES = {
     #'train+val': ['label_data_0313.json', 'label_data_0601.json', 'label_data_0531.json'],
-    'train': ['no_dotted_lines_train.json'],
-    'val': ['no_dotted_lines_test.json'],
+    'train': ['no_dotted_lines_train_1.json'],
+    'val': ['no_dotted_lines_test_1.json'],
     #'test': ['test_label.json'],
 }
 

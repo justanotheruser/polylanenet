@@ -1,5 +1,12 @@
 import numpy as np
 import ujson as json
+
+
+def warn(*args, **kwargs):
+    pass
+import warnings
+warnings.warn = warn
+
 from sklearn.linear_model import LinearRegression
 
 
@@ -124,6 +131,7 @@ class LaneEval(object):
 
 if __name__ == '__main__':
     import sys
+
     try:
         if len(sys.argv) != 3:
             raise Exception('Invalid input arguments')
