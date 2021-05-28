@@ -111,6 +111,7 @@ def save_train_state(path, model, optimizer, lr_scheduler, epoch):
     torch.save(train_state, path)
 
 
+# python train.py --exp_name tusimple --cfg cfgs\max_6_lanes_single_class.yaml --validate --resume
 def parse_args():
     parser = argparse.ArgumentParser(description="Train PolyLaneNet")
     parser.add_argument("--exp_name", default="default", help="Experiment name", required=True)
@@ -181,6 +182,7 @@ if __name__ == "__main__":
         exp_root = setup_exp_dir(cfg['exps_dir'], args.exp_name, args.cfg)
     else:
         exp_root = os.path.join(cfg['exps_dir'], os.path.basename(os.path.normpath(args.exp_name)))
+        print(exp_root)
 
     logging.basicConfig(
         format="[%(asctime)s] [%(levelname)s] %(message)s",

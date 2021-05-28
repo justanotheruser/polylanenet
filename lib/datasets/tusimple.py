@@ -10,8 +10,8 @@ from utils.metric import eval_json
 
 SPLIT_FILES = {
     #'train+val': ['label_data_0313.json', 'label_data_0601.json', 'label_data_0531.json'],
-    'train': ['no_dotted_lines_train_1.json'],
-    'val': ['no_dotted_lines_test_1.json'],
+    'train': ['label_data_0601_withclasses.json'],
+    'val': ['label_data_0531_withclasses.json'],
     #'test': ['test_label.json'],
 }
 
@@ -83,7 +83,7 @@ class TuSimple(object):
                     'org_path': data['raw_file'],
                     'org_lanes': gt_lanes,
                     'lanes': lanes,
-                    'aug': False,
+                    'categories': data['categories'],
                     'y_samples': y_samples
                 })
 

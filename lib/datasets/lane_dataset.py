@@ -63,7 +63,9 @@ class LaneDataset(Dataset):
         old_lanes = anno['lanes']
         categories = anno['categories'] if 'categories' in anno else [1] * len(old_lanes)
         old_lanes = zip(old_lanes, categories)
+        old_lanes_dbg = list(old_lanes)
         old_lanes = filter(lambda x: len(x[0]) > 0, old_lanes)
+        old_laned_filtered = list(old_lanes)
         lanes = np.ones((self.dataset.max_lanes, 1 + 2 + 2 * self.dataset.max_points), dtype=np.float32) * -1e5
         lanes[:, 0] = 0
         old_lanes = sorted(old_lanes, key=lambda x: x[0][0][0])
