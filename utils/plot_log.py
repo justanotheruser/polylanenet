@@ -34,7 +34,7 @@ def plot_loss(data,
               plot_lr=True,
               smoothing=0,
               xaxis='time',
-              only_epoch_end=False,
+              only_epoch_end=True,
               plot_val=False,
               plot_loss_comps=False):
     iter_data = data['iter_update']
@@ -136,9 +136,11 @@ def get_logfilepath(exp_name):
 
 def parse_args():
     parser = argparse.ArgumentParser(description='Visualization')
-    parser.add_argument('exp_name', nargs='*', default=None, help='Experiment names')
+    group = parser.add_mutually_exclusive_group(required=True)
+    group.add_argument('--exp_name', nargs='*', default=None, help='Experiment names')
+    group.add_argument('--log_file', nargs='*', default=None, help='Path to log of training')
     parser.add_argument('--smoothing', type=float, default=0.99, help='Experiment name')
-    parser.add_argument('--xaxis', default='time', help='X axis (`time`or `epoch`)')
+    parser.add_argument('--xaxis', default='epoch', help='X axis (`time`or `epoch`)')
 
     return parser.parse_args()
 
@@ -146,8 +148,14 @@ def parse_args():
 if __name__ == "__main__":
     args = parse_args()
     fig, ax = plt.subplots(nrows=1, ncols=1)
-    for exp_name in args.exp_name:
-        log_filepath = get_logfilepath(exp_name)
+    if args.log_file:
+        log_filepath_list = args.log_file
+        exp_names = args.log_file
+    else:
+        log_filepath_list = [get_logfilepath(exp_name) for exp_name in args.exp_name]
+        exp_names = args.exp_name
+
+    for exp_name, log_filepath in zip(exp_names, log_filepath_list):
         data = parse_log(log_filepath)
         plot_loss(data, fig, ax, exp_name, smoothing=args.smoothing, xaxis=args.xaxis, plot_val=True)
 
