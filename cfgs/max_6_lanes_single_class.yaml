@@ -3,7 +3,7 @@ seed: 0
 exps_dir: 'experiments'
 iter_log_interval: 1
 iter_time_window: 100
-model_save_interval: 1
+model_save_interval: 10
 backup:
 model:
   name: PolyRegression
@@ -20,11 +20,11 @@ loss_parameters:
   cls_weight: 0
   poly_weight: 300
 batch_size: 8
-epochs: 2695
+epochs: 800
 optimizer:
   name: Adam
   parameters:
-    lr: 3.0e-4
+    lr: 3.0e-5
 lr_scheduler:
   name: CosineAnnealingLR
   parameters:
@@ -62,7 +62,7 @@ datasets:
     parameters:
       dataset: tusimple
       split: val
-      max_lanes: 5
+      max_lanes: 6
       img_size: [360, 640]
       root: "D:/datasets/tusimple"
       normalize: true

@@ -68,6 +68,7 @@ class LaneDataset(Dataset):
         old_laned_filtered = list(old_lanes)
         lanes = np.ones((self.dataset.max_lanes, 1 + 2 + 2 * self.dataset.max_points), dtype=np.float32) * -1e5
         lanes[:, 0] = 0
+        # lane markings are ordered according to the x-coordinate of the point closest to the bottom of the image
         old_lanes = sorted(old_lanes, key=lambda x: x[0][0][0])
         for lane_pos, (lane, category) in enumerate(old_lanes):
             lower, upper = lane[0][1], lane[-1][1]
